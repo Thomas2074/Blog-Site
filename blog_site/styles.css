@@ -1,0 +1,231 @@
+/* --- Root Variables for Theming --- */
+:root {
+    --primary-color: #007BFF;
+    --text-color: #333;
+    --bg-color: #fff;
+    --card-bg: #f9f9f9;
+    --border-color: #ddd;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+}
+
+/* --- Dark Mode Styles --- */
+body.dark-mode {
+    --primary-color: #4CAF50; /* A different highlight color for dark mode */
+    --text-color: #f0f0f0;
+    --bg-color: #1a1a1a;
+    --card-bg: #2a2a2a;
+    --border-color: #444;
+    --shadow-light: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Global & Base Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.3s, color 0.3s; /* Smooth theme transition */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: darken(var(--primary-color), 10%);
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    box-shadow: 0 2px 4px var(--shadow-light);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    margin-left: 20px;
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+}
+
+nav a::after { /* Underline effect for modern look */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+    left: 0;
+    background: var(--primary-color);
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+#theme-toggle:hover {
+    background: darken(var(--primary-color), 10%);
+}
+
+#theme-toggle:active {
+    transform: scale(0.95);
+}
+
+/* --- Hero Section --- */
+.hero {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.cta-button:hover {
+    background: darken(var(--primary-color), 10%);
+    transform: translateY(-2px);
+}
+
+/* --- Blog Posts Section --- */
+.blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px 0;
+}
+
+.post-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-light);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--shadow-light);
+}
+
+.post-card h3 {
+    margin-top: 0;
+}
+
+.post-card .meta {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+    background-color: var(--card-bg);
+}
+
+/* --- Animations (Modern Touch) --- */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-in {
+    opacity: 0;
+    animation: fadeInSlideUp 0.6s ease-out forwards;
+}
+
+/* Sequential animation delays */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* Utility to darken color - needs a preprocessor but we'll approximate with variables */
+/* Since CSS doesn't have a native 'darken' function, the variable changes handle the theme. */
+
+/* --- Responsiveness (Optional but recommended for modern design) --- */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    nav a {
+        margin: 0 10px;
+    }
+
+    .hero {
+        padding: 40px 0;
+    }
+}
